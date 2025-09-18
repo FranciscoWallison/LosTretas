@@ -18,7 +18,7 @@ const CLAN = {
   name: "LosTretas",
   tagline: "MMO RPG Clan — PvE • PvP • Raids",
   colors: {
-    primary: "from-purple-500 to-indigo-600",
+    primary: "",
     glow: "shadow-[0_0_40px_rgba(99,102,241,0.35)]",
   },
   discordInvite: "https://discord.gg/SEU-CONVITE",
@@ -89,24 +89,25 @@ export default function ClanLandingPage() {
 
       {/* HERO */}
       <section className="relative">
-        <div className="absolute inset-0 -z-10">
-          <img
-            src={CLAN.heroImage}
-            alt="hero"
-            className="h-[420px] w-full object-cover opacity-40"
+        {/* vídeo de fundo */}
+        <div className="absolute inset-0 z-0">
+          <video
+            src="/hero.mp4"
+            className="h-[930px] w-full object-cover opacity-20 pointer-events-none"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/lostretas.png"
+            aria-hidden="true"
           />
           <div className={`absolute inset-0 bg-gradient-to-b ${CLAN.colors.primary} opacity-30 mix-blend-overlay`} />
         </div>
 
-        <div className="mx-auto max-w-7xl px-4 py-16 md:py-24">
-          {/* <- AQUI: centralizado */}
+        {/* conteúdo acima do vídeo */}
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mx-auto text-center">
-            {/* badge centralizado */}
-            {/* <div className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/60 px-3 py-1 text-xs text-zinc-300 mx-auto">
-              <Gamepad2 className="h-3.5 w-3.5" /> MMO RPG Clan
-            </div> */}
-
-            {/* logo centralizado */}
             <div className="mt-4">
               <Image
                 src="/textoLogo.png"
@@ -118,19 +119,13 @@ export default function ClanLandingPage() {
               />
             </div>
 
-            {/* texto centralizado */}
             <p className="mt-4 text-zinc-300 max-w-xl mx-auto">
               Raids semanais, disciplina em GvG e time dedicado a progressão. Se você joga sério e respeita o time, aqui é seu lugar.
             </p>
 
-            {/* botões centralizados */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <Button size="lg" asChild>
-                <a href="#recrutamento">Quero entrar</a>
-              </Button>
-              <Button size="lg" variant="secondary" asChild>
-                <a href="#eventos">Ver agenda</a>
-              </Button>
+              <Button size="lg" asChild><a href="#recrutamento">Quero entrar</a></Button>
+              <Button size="lg" variant="secondary" asChild><a href="#eventos">Ver agenda</a></Button>
             </div>
           </div>
         </div>
