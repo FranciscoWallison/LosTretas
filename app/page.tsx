@@ -39,12 +39,12 @@ const SAMPLE_EVENTS = [
 ];
 
 const SAMPLE_ROSTER = [
-  { name: "Ayla", role: "Líder", cls: "Paladina", ilvl: 605 },
-  { name: "Kael", role: "Tank", cls: "Guardião", ilvl: 598 },
-  { name: "Mira", role: "Healer", cls: "Clériga", ilvl: 592 },
-  { name: "Riven", role: "DPS", cls: "Arqueiro", ilvl: 588 },
-  { name: "Nova", role: "DPS", cls: "Maga", ilvl: 586 },
-  { name: "Drax", role: "Suporte", cls: "Bardo", ilvl: 581 },
+  { name: "Ayla", role: "Líder", cls: "Paladina", ilvl: 85 },
+  { name: "Kael", role: "Tank", cls: "Guardião", ilvl: 85 },
+  { name: "Mira", role: "Healer", cls: "Clériga", ilvl: 85 },
+  { name: "Riven", role: "DPS", cls: "Arqueiro", ilvl: 85 },
+  { name: "Nova", role: "DPS", cls: "Maga", ilvl: 85 },
+  { name: "Drax", role: "Suporte", cls: "Bardo", ilvl: 85 },
 ];
 
 export default function ClanLandingPage() {
@@ -139,38 +139,41 @@ export default function ClanLandingPage() {
       {/* MÉTRICAS */}
       <section className="mx-auto max-w-7xl px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="border-zinc-800 bg-zinc-900/60">
+          <Card className="border-zinc-700 bg-zinc-900/70 text-zinc-100">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Membros</CardTitle>
-              <Users className="h-5 w-5 text-zinc-400" />
+              <CardTitle className="text-sm font-semibold text-zinc-100">Membros</CardTitle>
+              <Users className="h-5 w-5 text-zinc-200" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{SAMPLE_ROSTER.length}</div>
-              <p className="text-xs text-zinc-400">Ativos na última semana</p>
+              <div className="text-3xl font-bold text-white">{SAMPLE_ROSTER.length}</div>
+              <p className="text-xs text-zinc-200">Ativos na última semana</p>
             </CardContent>
           </Card>
-          <Card className="border-zinc-800 bg-zinc-900/60">
+
+          <Card className="border-zinc-700 bg-zinc-900/70 text-zinc-100">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Item Level Máximo</CardTitle>
-              <Shield className="h-5 w-5 text-zinc-400" />
+              <CardTitle className="text-sm font-semibold text-zinc-100">Item Level Máximo</CardTitle>
+              <Shield className="h-5 w-5 text-zinc-200" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{topIlvl}</div>
-              <p className="text-xs text-zinc-400">Meta do clã: 600+</p>
+              <div className="text-3xl font-bold text-white">{topIlvl}</div>
+              <p className="text-xs text-zinc-200">Meta do clã: 600+</p>
             </CardContent>
           </Card>
-          <Card className="border-zinc-800 bg-zinc-900/60">
+
+          <Card className="border-zinc-700 bg-zinc-900/70 text-zinc-100">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Atividades semanais</CardTitle>
-              <Calendar className="h-5 w-5 text-zinc-400" />
+              <CardTitle className="text-sm font-semibold text-zinc-100">Atividades semanais</CardTitle>
+              <Calendar className="h-5 w-5 text-zinc-200" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{SAMPLE_EVENTS.length}</div>
-              <p className="text-xs text-zinc-400">Organizadas e pontuais</p>
+              <div className="text-3xl font-bold text-white">{SAMPLE_EVENTS.length}</div>
+              <p className="text-xs text-zinc-200">Organizadas e pontuais</p>
             </CardContent>
           </Card>
         </div>
       </section>
+
 
       <Separator className="bg-zinc-800" />
 
@@ -324,7 +327,10 @@ export default function ClanLandingPage() {
             </CardHeader>
             <CardContent className="text-sm text-zinc-300 space-y-3">
               <p>
-                • Presença mínima: 2 raids/semana.\\n• Consumíveis obrigatórios nas progressões.\\n• Logs analisados semanalmente.\\n• Respeito acima de tudo.
+                • Presença mínima: 2 raids/semana.
+                Consumíveis obrigatórios nas progressões.
+                Logs analisados semanalmente.
+                Respeito acima de tudo.
               </p>
               <p>
                 Use o botão abaixo para copiar o link do nosso Discord e convidar amigos.
