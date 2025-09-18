@@ -87,13 +87,13 @@ export default function ClanLandingPage() {
         </div>
       </header>
 
-      {/* HERO */}
-      <section className="relative">
+      {/* HERO + MÉTRICAS com vídeo de fundo */}
+      <section className="relative overflow-hidden">
         {/* vídeo de fundo */}
-        <div className="absolute inset-0 z-0">
+        <div className="pointer-events-none absolute inset-0 z-0">
           <video
             src="/hero.mp4"
-            className="h-[930px] w-full object-cover opacity-20 pointer-events-none"
+            className="h-full w-full object-cover"
             autoPlay
             muted
             loop
@@ -102,10 +102,11 @@ export default function ClanLandingPage() {
             poster="/lostretas.png"
             aria-hidden="true"
           />
-          <div className={`absolute inset-0 bg-gradient-to-b ${CLAN.colors.primary} opacity-30 mix-blend-overlay`} />
+          {/* overlay opcional (deixa o texto legível) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/80" />
         </div>
 
-        {/* conteúdo acima do vídeo */}
+        {/* HERO (conteúdo) */}
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mx-auto text-center">
             <div className="mt-4">
@@ -118,54 +119,52 @@ export default function ClanLandingPage() {
                 className="mx-auto w-[260px] md:w-[520px] lg:w-[680px] h-auto drop-shadow-[0_6px_30px_rgba(0,0,0,0.6)]"
               />
             </div>
-
-            <p className="mt-4 text-zinc-300 max-w-xl mx-auto">
+            <p className="mt-4 text-zinc-200 max-w-xl mx-auto">
               Raids semanais, disciplina em GvG e time dedicado a progressão. Se você joga sério e respeita o time, aqui é seu lugar.
             </p>
-
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" asChild><a href="#recrutamento">Quero entrar</a></Button>
               <Button size="lg" variant="secondary" asChild><a href="#eventos">Ver agenda</a></Button>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* MÉTRICAS */}
-      <section className="mx-auto max-w-7xl px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="border-zinc-700 bg-zinc-900/70 text-zinc-100">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-100">Membros</CardTitle>
-              <Users className="h-5 w-5 text-zinc-200" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-white">{SAMPLE_ROSTER.length}</div>
-              <p className="text-xs text-zinc-200">Ativos na última semana</p>
-            </CardContent>
-          </Card>
+        {/* MÉTRICAS (ainda dentro do mesmo section, sobre o vídeo) */}
+        <div className="relative z-10 mx-auto max-w-7xl px-4 pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card className="border-zinc-700/70 bg-zinc-900/70 text-zinc-100 backdrop-blur">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-semibold">Membros</CardTitle>
+                <Users className="h-5 w-5 text-zinc-200" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-white">{SAMPLE_ROSTER.length}</div>
+                <p className="text-xs text-zinc-200">Ativos na última semana</p>
+              </CardContent>
+            </Card>
 
-          <Card className="border-zinc-700 bg-zinc-900/70 text-zinc-100">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-100">Item Level Máximo</CardTitle>
-              <Shield className="h-5 w-5 text-zinc-200" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-white">{topIlvl}</div>
-              <p className="text-xs text-zinc-200">Meta do clã: 600+</p>
-            </CardContent>
-          </Card>
+            <Card className="border-zinc-700/70 bg-zinc-900/70 text-zinc-100 backdrop-blur">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-semibold">Item Level Máximo</CardTitle>
+                <Shield className="h-5 w-5 text-zinc-200" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-white">{topIlvl}</div>
+                <p className="text-xs text-zinc-200">Meta do clã: 600+</p>
+              </CardContent>
+            </Card>
 
-          <Card className="border-zinc-700 bg-zinc-900/70 text-zinc-100">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-100">Atividades semanais</CardTitle>
-              <Calendar className="h-5 w-5 text-zinc-200" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-white">{SAMPLE_EVENTS.length}</div>
-              <p className="text-xs text-zinc-200">Organizadas e pontuais</p>
-            </CardContent>
-          </Card>
+            <Card className="border-zinc-700/70 bg-zinc-900/70 text-zinc-100 backdrop-blur">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-semibold">Atividades semanais</CardTitle>
+                <Calendar className="h-5 w-5 text-zinc-200" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-white">{SAMPLE_EVENTS.length}</div>
+                <p className="text-xs text-zinc-200">Organizadas e pontuais</p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
