@@ -7,33 +7,26 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Swords, Shield, Users, Calendar, MapPin, Mail, Crown, Gamepad2 } from "lucide-react";
+import { Swords, Shield, Users, Calendar, MapPin, Mail, Crown, Check, Copy } from "lucide-react";
 import Image from "next/image";
 
 // =====================
 // CONFIGURAÇÕES RÁPIDAS
 // =====================
-// Troque estes valores pelo do seu clã.
 const CLAN = {
   name: "LosTretas",
   tagline: "MMO RPG Clan — PvE • PvP • Raids",
   colors: {
-    primary: "",
-    glow: "shadow-[0_0_40px_rgba(99,102,241,0.35)]",
+    primary: "", // se quiser gradiente no overlay: "from-purple-500 to-indigo-600"
+    glow: "shadow-[var(--clan-glow)]",
   },
-  discordInvite: "https://discord.gg/SEU-CONVITE",
-  heroImage:
-    "./lostretas.png",
-  logo: "./lostretas.png",
+  discordInvite: "https://discord.gg/f8NUDtCFrV",
+  whatsappInvite: "https://chat.whatsapp.com/GUCQxtlLgnAA7EdA737Rue",
+  logo: "/lostretas.png",
 };
 
 const SAMPLE_EVENTS = [
-  {
-    title: "Raid: Cidadela Abissal",
-    date: "Sáb, 20:30",
-    req: "GS 580+",
-    location: "Sala 3 / Discord",
-  },
+  { title: "Raid: Cidadela Abissal", date: "Sáb, 20:30", req: "GS 580+", location: "Sala 3 / Discord" },
   { title: "GvG de Território", date: "Dom, 18:00", req: "Time A/B", location: "Campo Norte" },
   { title: "Dungeon Mítica", date: "Qua, 21:00", req: "GS 550+", location: "Instância Rota 2" },
 ];
@@ -53,7 +46,7 @@ export default function ClanLandingPage() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Formulário enviado!\\n\\nNick: ${form.nickname}\\nClasse: ${form.classe}\\nFunção: ${form.role}`);
+    alert(`Formulário enviado!\n\nNick: ${form.nickname}\nClasse: ${form.classe}\nFunção: ${form.role}`);
   };
 
   return (
@@ -62,12 +55,7 @@ export default function ClanLandingPage() {
       <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-zinc-900/60 border-b border-zinc-800">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Ícone/Logo pequeno */}
-            <img
-              src={CLAN.logo}
-              alt="logo"
-              className="h-9 w-9 md:h-10 md:w-10 rounded-xl object-cover ring-1 ring-zinc-800"
-            />
+            <img src={CLAN.logo} alt="logo" className="h-9 w-9 md:h-10 md:w-10 rounded-xl object-cover ring-1 ring-zinc-800" />
             <div>
               <h1 className="text-xl font-bold tracking-wide">{CLAN.name}</h1>
               <p className="text-xs text-zinc-400">{CLAN.tagline}</p>
@@ -81,9 +69,21 @@ export default function ClanLandingPage() {
             <a href="#recrutamento" className="hover:text-white text-zinc-300">Recrutamento</a>
           </nav>
 
-          <Button asChild size="sm" className="rounded-2xl">
-            <a href={CLAN.discordInvite} target="_blank" rel="noreferrer">Entrar no Discord</a>
-          </Button>
+          <div className="hidden sm:flex gap-2">
+            <Button asChild size="sm" className="rounded-2xl">
+              <a href={CLAN.discordInvite} target="_blank" rel="noreferrer">Discord</a>
+            </Button>
+
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="rounded-2xl border-2 border-[hsl(var(--primary))] focus-visible:ring-[hsl(var(--primary))]"
+            >
+              <a href={CLAN.whatsappInvite} target="_blank" rel="noreferrer">WhatsApp</a>
+            </Button>
+          </div>
+
         </div>
       </header>
 
@@ -102,14 +102,18 @@ export default function ClanLandingPage() {
             poster="/lostretas.png"
             aria-hidden="true"
           />
-          {/* overlay opcional (deixa o texto legível) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/80" />
+          {/* overlay para legibilidade */}
+          {CLAN.colors.primary ? (
+            <div className={`absolute inset-0 bg-gradient-to-b ${CLAN.colors.primary} opacity-30 mix-blend-overlay`} />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/80" />
+          )}
         </div>
 
         {/* HERO (conteúdo) */}
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:py-24">
+        <div className="relative z-10 mx-auto max-w-7xl px-50 py-16 md:py-24">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="mt-4">
+            <div className="m-40">
               <Image
                 src="/textoLogo.png"
                 alt="LosTretas"
@@ -119,17 +123,11 @@ export default function ClanLandingPage() {
                 className="mx-auto w-[260px] md:w-[520px] lg:w-[680px] h-auto drop-shadow-[0_6px_30px_rgba(0,0,0,0.6)]"
               />
             </div>
-            <p className="mt-4 text-zinc-200 max-w-xl mx-auto">
-              Raids semanais, disciplina em GvG e time dedicado a progressão. Se você joga sério e respeita o time, aqui é seu lugar.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <Button size="lg" asChild><a href="#recrutamento">Quero entrar</a></Button>
-              <Button size="lg" variant="secondary" asChild><a href="#eventos">Ver agenda</a></Button>
-            </div>
+
           </div>
         </div>
 
-        {/* MÉTRICAS (ainda dentro do mesmo section, sobre o vídeo) */}
+        {/* MÉTRICAS (sobre o vídeo) */}
         <div className="relative z-10 mx-auto max-w-7xl px-4 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="border-zinc-700/70 bg-zinc-900/70 text-zinc-100 backdrop-blur">
@@ -168,7 +166,6 @@ export default function ClanLandingPage() {
         </div>
       </section>
 
-
       <Separator className="bg-zinc-800" />
 
       {/* SOBRE */}
@@ -202,16 +199,53 @@ export default function ClanLandingPage() {
 
       <Separator className="bg-zinc-800" />
 
-      {/* EVENTOS */}
+      {/* EVENTOS (com destaque + links) */}
       <section id="eventos" className="mx-auto max-w-7xl px-4 py-12">
         <div className="flex items-center justify-between">
           <h3 className="text-2xl font-bold">Próximos eventos</h3>
-          <Button asChild variant="outline" className="border-zinc-700">
-            <a href={CLAN.discordInvite} target="_blank" rel="noreferrer">Confirmar presença</a>
-          </Button>
+          <div className="hidden md:flex gap-2">
+            <Button asChild><a href={CLAN.discordInvite} target="_blank" rel="noreferrer">Discord</a></Button>
+            <Button asChild variant="outline" className="border-zinc-700">
+              <a href={CLAN.whatsappInvite} target="_blank" rel="noreferrer">WhatsApp</a>
+            </Button>
+          </div>
         </div>
+
+        {/* Destaque: Incursão da Guild (Sáb 18h) */}
+        <Card className="mt-6 overflow-hidden bg-zinc-900/60">
+          <div className="relative h-48 w-full">
+            <Image
+              src="/image.png"
+              alt="Incursão da Guild"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute bottom-3 left-3 right-3 text-zinc-100">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h4 className="text-xl font-bold">Incursão da Guild</h4>
+                  <p className="text-sm text-zinc-200">Todos os Sábados — 18h • Sala de Raids / Discord</p>
+                </div>
+                <div className="flex gap-2">
+                  <Button asChild size="sm"><a href={CLAN.discordInvite} target="_blank" rel="noreferrer">Entrar no Discord</a></Button>
+                  <Button asChild size="sm" variant="secondary">
+                    <a href={CLAN.whatsappInvite} target="_blank" rel="noreferrer">Grupo WhatsApp</a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        {/* Lista padrão */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-          {SAMPLE_EVENTS.map((ev, i) => (
+          {[
+            { title: "Incursão da Guild", date: "Sáb, 18:00", req: "Todos", location: "Discord" },
+            ...SAMPLE_EVENTS,
+          ].map((ev, i) => (
             <Card key={i} className="border-zinc-800 bg-zinc-900/60">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
@@ -225,6 +259,14 @@ export default function ClanLandingPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* CTA mobile */}
+        <div className="mt-6 flex md:hidden gap-2">
+          <Button asChild className="flex-1"><a href={CLAN.discordInvite} target="_blank" rel="noreferrer">Discord</a></Button>
+          <Button asChild variant="outline" className="flex-1 border-zinc-700">
+            <a href={CLAN.whatsappInvite} target="_blank" rel="noreferrer">WhatsApp</a>
+          </Button>
         </div>
       </section>
 
@@ -326,9 +368,7 @@ export default function ClanLandingPage() {
                 Logs analisados semanalmente.
                 Respeito acima de tudo.
               </p>
-              <p>
-                Use o botão abaixo para copiar o link do nosso Discord e convidar amigos.
-              </p>
+              <p>Use o botão abaixo para copiar o link do nosso Discord e convidar amigos.</p>
               <CopyDiscord invite={CLAN.discordInvite} />
             </CardContent>
           </Card>
@@ -368,8 +408,18 @@ function CopyDiscord({ invite }: { invite: string }) {
   return (
     <div className="flex items-center gap-3">
       <Input readOnly value={invite} className="bg-zinc-950 border-zinc-800" />
-      <Button onClick={copy} variant="outline" className="border-zinc-700">
-        {copied ? "Copiado!" : "Copiar"}
+      <Button onClick={copy} variant="outline" className="border-zinc-700 w-28">
+        {copied ? (
+          <>
+            <Check className="h-4 w-4 mr-2" />
+            Copiado!
+          </>
+        ) : (
+          <>
+            <Copy className="h-4 w-4 mr-2" />
+            Copiar
+          </>
+        )}
       </Button>
     </div>
   );
